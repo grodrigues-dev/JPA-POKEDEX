@@ -1,5 +1,6 @@
 package br.com.fiap.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,11 +21,11 @@ public class Ginasio {
 	@Column(name = "NM_GINASIO", nullable = false)
 	private String nome; 
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "CD_CIDADE")
 	private Cidade cidade;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "CD_TREINADOR")
 	private Treinador lider;
 	

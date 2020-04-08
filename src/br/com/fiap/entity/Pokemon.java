@@ -2,6 +2,7 @@ package br.com.fiap.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -41,7 +42,7 @@ public class Pokemon {
 	@Temporal(TemporalType.DATE)
 	private Calendar captura; 
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "CD_TREINADOR")
 	private Treinador treinador;
 	
