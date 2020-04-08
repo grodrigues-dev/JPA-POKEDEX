@@ -1,0 +1,5 @@
+package br.com.fiap.entity;
+
+public enum Tipos {
+	FOGO, ÁGUA, TERRA, GRAMA, ELÉTRICO, PEDRA, SOLO, VOADOR, VENENOSO, GELO, PSIQUÍCO, FANTASMA, DARK, FADA, DRAGÃO, METAL, NORMAL, LUTADOR
+}
