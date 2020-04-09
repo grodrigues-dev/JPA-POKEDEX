@@ -1,48 +1,41 @@
 package br.com.fiap.view;
 
-import java.util.Calendar;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import br.com.fiap.dao.impl.PokemonDAOImpl;
+import br.com.fiap.dao.impl.GinasioDAOImpl;
 import br.com.fiap.dao.impl.TreinadorDAOImpl;
-import br.com.fiap.entity.Pokemon;
-import br.com.fiap.entity.Tipos;
+import br.com.fiap.entity.Cidade;
+import br.com.fiap.entity.Ginasio;
 import br.com.fiap.entity.Treinador;
 import br.com.fiap.exceptions.CommitException;
 import br.com.fiap.exceptions.ResourceNotFoundException;
 import br.com.fiap.jpa.singleton.EntityManagerFactorySingleton;
 
-
-
-public class ConsoleView {
+public class CadastroCidadeGinasio {
 
 	public static void main(String[] args) {
 		EntityManagerFactory fabrica = EntityManagerFactorySingleton.getInstance(); 
 		EntityManager em = fabrica.createEntityManager();
 		
-		PokemonDAOImpl pokeDao = new PokemonDAOImpl(em);
+		Cidade city = new Cidade("Cinnabar", "Route 33");
 		
-		TreinadorDAOImpl treinadorDao = new TreinadorDAOImpl(em);
+		TreinadorDAOImpl tDao = new TreinadorDAOImpl(em); 
+		GinasioDAOImpl gDao = new GinasioDAOImpl(em); 
 		
 		try {
-			Treinador ash = treinadorDao.pesquisar(1);
-			Pokemon charizard = new Pokemon("Gloom", 25, Tipos.GRAMA, Calendar.getInstance(), ash);
-			pokeDao.cadastrar(charizard);
-		} catch (ResourceNotFoundException e) {			
+			Treinador lider = tDao.pesquisar(2);
+			Ginasio gin = new Ginasio("Ginásio de Cinnabar", city, lider);	
+			gDao.cadastrar(gin);
+			gDao.commit();
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		//Treinador ash = new Treinador("ash", 12527);
-		
-		try {
-			pokeDao.commit();
 		} catch (CommitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 }
