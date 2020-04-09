@@ -33,7 +33,7 @@ public abstract class GenericDAOImpl <T, K>implements GenericDAO<T, K> {
 	}
 
 	@Override
-	public T pesquisar(K codigo) {
+	public T pesquisar(K codigo) throws ResourceNotFoundException {
 		return entityManager.find(classe, codigo);
 	}
 
