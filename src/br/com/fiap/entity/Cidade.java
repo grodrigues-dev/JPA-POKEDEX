@@ -1,10 +1,12 @@
 package br.com.fiap.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,6 +26,10 @@ public class Cidade {
 	@Column(name = "DS_LOCALIZACAO", nullable = false)
 	private String localizacao;	
 	
+	@OneToOne(mappedBy = "cidade", cascade = CascadeType.PERSIST)
+	private Ginasio ginasio; 
+		
+	
 	public Cidade(String nome, String localizacao) {
 		super();
 		this.nome = nome;
@@ -34,11 +40,11 @@ public class Cidade {
 		super();
 	}
 
-	public int getCoidgo() {
-		
+	public int getCodigo() {
 		return codigo;
 	}
-	public void setCoidgo(int codigo) {
+	
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {
@@ -52,6 +58,16 @@ public class Cidade {
 	}
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
+	}
+
+	public Ginasio getGinasio() {
+		return ginasio;
+	}
+
+	public void setGinasio(Ginasio ginasio) {
+		this.ginasio = ginasio;
 	} 
+	
+//	
 	
 }

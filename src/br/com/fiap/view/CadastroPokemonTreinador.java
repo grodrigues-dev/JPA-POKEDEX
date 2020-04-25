@@ -26,10 +26,17 @@ public class CadastroPokemonTreinador {
 		
 		TreinadorDAOImpl treinadorDao = new TreinadorDAOImpl(em);
 		
-		Treinador treinador = new Treinador("Blaine", 12527);
+		//Treinador treinador = new Treinador("Blaine", 12527);
 		
-		Pokemon charizard = new Pokemon("Magma", 33, Tipos.FOGO, Calendar.getInstance(), treinador);
-		pokeDao.cadastrar(charizard);
+		Treinador treinador;
+		try {
+			treinador = treinadorDao.pesquisar(2);			
+			Pokemon charizard = new Pokemon("Guengar", 31, Tipos.FANTASMA, Calendar.getInstance(), treinador);
+			pokeDao.cadastrar(charizard);
+		} catch (ResourceNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try {
 			pokeDao.commit(); 

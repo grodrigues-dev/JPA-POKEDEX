@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,9 +44,10 @@ public class Pokemon {
 	@Temporal(TemporalType.DATE)
 	private Calendar captura; 
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CD_TREINADOR")
 	private Treinador treinador;
+	
 	
 	public Pokemon(String raca, int nivel, Tipos tipo, Calendar captura, Treinador treinador) {
 		super();

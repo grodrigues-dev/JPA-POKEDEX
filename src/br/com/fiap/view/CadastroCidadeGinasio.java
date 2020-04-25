@@ -18,21 +18,19 @@ public class CadastroCidadeGinasio {
 		EntityManagerFactory fabrica = EntityManagerFactorySingleton.getInstance(); 
 		EntityManager em = fabrica.createEntityManager();
 		
-		Cidade city = new Cidade("Cinnabar", "Route 33");
+		Cidade city = new Cidade("Lavender", "Route 33");
 		
 		TreinadorDAOImpl tDao = new TreinadorDAOImpl(em); 
 		GinasioDAOImpl gDao = new GinasioDAOImpl(em); 
 		
 		try {
-			Treinador lider = tDao.pesquisar(2);
-			Ginasio gin = new Ginasio("Ginásio de Cinnabar", city, lider);	
+			Treinador lider = tDao.pesquisar(1);
+			Ginasio gin = new Ginasio("Torre da Luta", city, lider);	
 			gDao.cadastrar(gin);
 			gDao.commit();
 		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (CommitException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -1,10 +1,16 @@
 package br.com.fiap.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,10 +30,39 @@ public class Treinador {
 	@Column(name = "VL_XP")
 	private int xp;
 	
+	@OneToMany(mappedBy = "treinador", cascade = CascadeType.PERSIST)
+	private List<Pokemon> pokemons;
+	
+	@OneToOne(mappedBy = "lider")
+	private Cidade cidade;
+	
+	@ManyToMany(mappedBy = "desafiantes")
+	private List<Ginasio> desafios; 
+	
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+
 	public Treinador(String nome, int xp) {
 		super();
 		this.nome = nome;
 		this.xp = xp;
+	}
+
+
+	public List<Pokemon> getPokemons() {
+		return pokemons;
+	}
+	
+	
+	public void setPokemons(List<Pokemon> pokemons) {
+		this.pokemons = pokemons;
 	}
 
 	
