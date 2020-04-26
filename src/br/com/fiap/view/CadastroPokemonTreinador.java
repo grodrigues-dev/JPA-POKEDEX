@@ -31,7 +31,7 @@ public class CadastroPokemonTreinador {
 		Treinador treinador;
 		try {
 			treinador = treinadorDao.pesquisar(2);			
-			Pokemon charizard = new Pokemon("Guengar", 31, Tipos.FANTASMA, Calendar.getInstance(), treinador);
+			Pokemon charizard = new Pokemon("Guengar", 31, Tipos.FANTASMA, Calendar.getInstance());
 			pokeDao.cadastrar(charizard);
 		} catch (ResourceNotFoundException e1) {
 			// TODO Auto-generated catch block

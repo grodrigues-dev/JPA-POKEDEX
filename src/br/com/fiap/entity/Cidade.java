@@ -11,8 +11,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_CIDADE")
-@SequenceGenerator(name = "cidade", sequenceName = "SQ_TB_CIDADE", allocationSize = 1)
+@Table(name="ENTERPRISE_TB_CIDADE")
+@SequenceGenerator(name = "cidade", sequenceName = "SQ_ENTERPRISE_TB_CIDADE", allocationSize = 1)
 public class Cidade {
 	
 	@Id

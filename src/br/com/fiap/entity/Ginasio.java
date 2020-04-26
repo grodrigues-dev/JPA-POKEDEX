@@ -16,8 +16,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_GINASIO")
-@SequenceGenerator(name = "gin", sequenceName = "SQ_TB_GINASIO" , allocationSize = 1)
+@Table(name = "ENTERPIRESE_TB_EGINASIO")
+@SequenceGenerator(name = "gin", sequenceName = "SQ_ENTERPIRESE_TB_GINASIO" , allocationSize = 1)
 public class Ginasio {
 	
 	@Id
@@ -37,7 +37,7 @@ public class Ginasio {
 	private Treinador lider;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "TB_BATALHAS", 
+	@JoinTable(name = "ENTERPIRESE_TB_BATALHAS", 
 			joinColumns = @JoinColumn(name= "CD_GINASIO"), 
 			inverseJoinColumns = @JoinColumn(name="CD_TREINADOR"))
 	private List<Treinador> desafiantes;

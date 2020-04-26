@@ -21,8 +21,8 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "TB_POKEMON")
-@SequenceGenerator(name = "poke", sequenceName = "SQ_TB_POKEMON", allocationSize = 1)
+@Table(name = "ENTERPRISE_TB_POKEMON")
+@SequenceGenerator(name = "poke", sequenceName = "SQ_ENTERPRISE_TB_POKEMON", allocationSize = 1)
 public class Pokemon {
 	
 	@Id
@@ -44,19 +44,21 @@ public class Pokemon {
 	@Temporal(TemporalType.DATE)
 	private Calendar captura; 
 	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinColumn(name = "CD_TREINADOR")
+	@ManyToOne (cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "CD_TREINADOR", nullable = false)
 	private Treinador treinador;
 	
 	
-	public Pokemon(String raca, int nivel, Tipos tipo, Calendar captura, Treinador treinador) {
+
+
+	public Pokemon(String raca, int nivel, Tipos tipo, Calendar captura) {
 		super();
 		this.raca = raca;
 		this.nivel = nivel;
 		this.tipo = tipo;
 		this.captura = captura;
-		this.treinador = treinador;
 	}
+
 
 
 	public Pokemon() {

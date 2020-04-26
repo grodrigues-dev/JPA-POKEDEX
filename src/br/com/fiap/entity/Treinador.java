@@ -1,5 +1,6 @@
 package br.com.fiap.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,14 +15,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="TB_TREINADOR")
-@SequenceGenerator(name = "treinador", sequenceName = "SQ_TB_TREINADOR", allocationSize = 1)
+@Table(name="ENTERPRISE_TB_TREINADOR")
+@SequenceGenerator(name = "trein", sequenceName = "SQ_ENTERPRISE_TB_TREINADOR", allocationSize = 1)
 public class Treinador {
 	
 	@Id
 	@Column(name = "CD_TREINADOR")
-	@GeneratedValue(generator = "treinador", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "trein", strategy = GenerationType.SEQUENCE)
 	private int codigo; 
 	
 	@Column(name = "NM_TREINADOR", nullable = false)
@@ -31,22 +33,13 @@ public class Treinador {
 	private int xp;
 	
 	@OneToMany(mappedBy = "treinador", cascade = CascadeType.PERSIST)
-	private List<Pokemon> pokemons;
+	private List<Pokemon> pokemons = new ArrayList<Pokemon>();
 	
 	@OneToOne(mappedBy = "lider")
-	private Cidade cidade;
+	private Ginasio Ginasio;
 	
 	@ManyToMany(mappedBy = "desafiantes")
 	private List<Ginasio> desafios; 
-	
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
-	}
 
 
 	public Treinador(String nome, int xp) {
@@ -64,6 +57,12 @@ public class Treinador {
 	public void setPokemons(List<Pokemon> pokemons) {
 		this.pokemons = pokemons;
 	}
+	
+	public void addPokemon(Pokemon pokemon) {
+		pokemon.setTreinador(this); 
+		this.pokemons.add(pokemon);
+	}
+	
 
 	
 	public Treinador() {
@@ -100,6 +99,26 @@ public class Treinador {
 	public void setXp(int xp) {
 		this.xp = xp;
 	}
+	
+	public Ginasio getGinasio() {
+		return Ginasio;
+	}
+
+
+	public void setGinasio(Ginasio ginasio) {
+		Ginasio = ginasio;
+	}
+
+
+	public List<Ginasio> getDesafios() {
+		return desafios;
+	}
+
+
+	public void setDesafios(List<Ginasio> desafios) {
+		this.desafios = desafios;
+	}
+
 	
 	
 	
