@@ -4,19 +4,20 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
 
+
 import br.com.fiap.dao.GenericDAO;
 import br.com.fiap.exceptions.CommitException;
 import br.com.fiap.exceptions.ResourceNotFoundException;
 
 public abstract class GenericDAOImpl <T, K>implements GenericDAO<T, K> {
 
-	private EntityManager entityManager;
+	protected EntityManager em;
 
-	private Class<T> classe;
+	protected Class<T> classe;
 
 	@SuppressWarnings("unchecked")
-	public GenericDAOImpl(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	public GenericDAOImpl(EntityManager em) {
+		this.em = em;
 		this.classe = (Class<T>) ((ParameterizedType) getClass()
 														.getGenericSuperclass())
 														.getActualTypeArguments()[0];
@@ -24,17 +25,17 @@ public abstract class GenericDAOImpl <T, K>implements GenericDAO<T, K> {
 
 	@Override
 	public void cadastrar(T entidade) {
-		entityManager.persist(entidade);
+		em.persist(entidade);
 	}
 
 	@Override
 	public void atualizar(T entidade) {
-		entityManager.merge(entidade);
+		em.merge(entidade);
 	}
 
 	@Override
 	public T pesquisar(K codigo) throws ResourceNotFoundException {
-		return entityManager.find(classe, codigo);
+		return em.find(classe, codigo);
 	}
 
 	@Override
@@ -43,17 +44,17 @@ public abstract class GenericDAOImpl <T, K>implements GenericDAO<T, K> {
 		if (objeto == null) {
 			throw new ResourceNotFoundException();
 		}
-		entityManager.remove(objeto);
+		em.remove(objeto);
 	}
 
 	@Override
 	public void commit() throws CommitException {
 		try {
-			entityManager.getTransaction().begin();
-			entityManager.getTransaction().commit();
+			em.getTransaction().begin();
+			em.getTransaction().commit();
 		}catch(Exception e) {
 			e.printStackTrace();
-			entityManager.getTransaction().rollback();
+			em.getTransaction().rollback();
 			throw new CommitException();
 		}
 	}

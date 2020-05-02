@@ -15,6 +15,7 @@ import br.com.fiap.entity.Pokemon;
 import br.com.fiap.entity.Tipos;
 import br.com.fiap.entity.Treinador;
 import br.com.fiap.exceptions.CommitException;
+import br.com.fiap.exceptions.ResourceNotFoundException;
 import br.com.fiap.jpa.singleton.EntityManagerFactorySingleton;
 
 public class CadastroComCascade {
@@ -27,29 +28,33 @@ public class CadastroComCascade {
 		
 		PokemonDAO pokeDao = new PokemonDAOImpl(em);
 		
-		Treinador t = new Treinador("Capeta", 100);
-		
-		Pokemon p1 = new Pokemon("Jinx", 25, Tipos.NORMAL, Calendar.getInstance());
-		Pokemon p2 = new Pokemon("Heracross", 12, Tipos.INSETO, Calendar.getInstance());
-		Pokemon p3 = new Pokemon("Squirtle", 10, Tipos.ÁGUA, Calendar.getInstance());
-		
-		List<Pokemon> lista = new ArrayList<Pokemon>();
-		lista.add(p1);
-		lista.add(p2);
-		lista.add(p3);
-		
-		
-		for (Pokemon p : lista) t.addPokemon(p);
-		
-		treinadorDao.cadastrar(t);
-		
 		
 		try {
-			treinadorDao.commit();
+			Treinador t = treinadorDao.pesquisar(3);
+			Pokemon p1 = new Pokemon("Hitmonlee", 32, Tipos.LUTADOR, Calendar.getInstance());
+			Pokemon p2 = new Pokemon("Kabutops", 29, Tipos.PEDRA, Calendar.getInstance());
+			Pokemon p3 = new Pokemon("Hypno", 38, Tipos.PSIQUÍCO, Calendar.getInstance());
+//			
+			
+			List<Pokemon> lista = new ArrayList<Pokemon>();
+			lista.add(p1);
+			lista.add(p2);
+			lista.add(p3);
+			for (Pokemon p : lista) {			
+				p.setTreinador(t);
+				pokeDao.cadastrar(p);
+				pokeDao.commit();
+			}
+			
+//			treinadorDao.cadastrar(t);
+			
+		} catch (ResourceNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (CommitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}	
 		
 		em.close();
 		fabrica.close();

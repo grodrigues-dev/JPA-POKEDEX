@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ENTERPIRESE_TB_EGINASIO")
+@Table(name = "ENTERPRISE_TB_GINASIO")
 @SequenceGenerator(name = "gin", sequenceName = "SQ_ENTERPIRESE_TB_GINASIO" , allocationSize = 1)
 public class Ginasio {
 	
@@ -29,7 +29,7 @@ public class Ginasio {
 	private String nome; 
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "CD_CIDADE", unique= true)
+	@JoinColumn(name = "CD_CIDADE", unique= true, nullable = false)
 	private Cidade cidade;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
@@ -57,7 +57,7 @@ public class Ginasio {
 		this.cidade = cidade;
 		this.lider = lider;
 	}
-	
+		
 	public Ginasio() {
 		super();
 	}

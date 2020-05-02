@@ -35,10 +35,10 @@ public class Treinador {
 	@OneToMany(mappedBy = "treinador", cascade = CascadeType.PERSIST)
 	private List<Pokemon> pokemons = new ArrayList<Pokemon>();
 	
-	@OneToOne(mappedBy = "lider")
-	private Ginasio Ginasio;
+	@OneToOne(mappedBy = "lider", cascade = CascadeType.PERSIST)
+	private Ginasio ginasio;
 	
-	@ManyToMany(mappedBy = "desafiantes")
+	@ManyToMany(mappedBy = "desafiantes", cascade = CascadeType.PERSIST)
 	private List<Ginasio> desafios; 
 
 
@@ -48,6 +48,9 @@ public class Treinador {
 		this.xp = xp;
 	}
 
+	public Treinador() {
+		super();
+	}
 
 	public List<Pokemon> getPokemons() {
 		return pokemons;
@@ -62,15 +65,7 @@ public class Treinador {
 		pokemon.setTreinador(this); 
 		this.pokemons.add(pokemon);
 	}
-	
-
-	
-	public Treinador() {
-		super();
-	}
-
-
-	
+		
 	public int getCodigo() {
 		return codigo;
 	}
@@ -101,12 +96,12 @@ public class Treinador {
 	}
 	
 	public Ginasio getGinasio() {
-		return Ginasio;
+		return ginasio;
 	}
 
 
 	public void setGinasio(Ginasio ginasio) {
-		Ginasio = ginasio;
+		this.ginasio = ginasio;
 	}
 
 
@@ -118,9 +113,5 @@ public class Treinador {
 	public void setDesafios(List<Ginasio> desafios) {
 		this.desafios = desafios;
 	}
-
-	
-	
-	
 	
 }

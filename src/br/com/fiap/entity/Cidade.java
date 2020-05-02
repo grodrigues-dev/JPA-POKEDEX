@@ -28,7 +28,6 @@ public class Cidade {
 	
 	@OneToOne(mappedBy = "cidade", cascade = CascadeType.PERSIST)
 	private Ginasio ginasio; 
-		
 	
 	public Cidade(String nome, String localizacao) {
 		super();

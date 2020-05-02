@@ -48,8 +48,6 @@ public class Pokemon {
 	@JoinColumn(name = "CD_TREINADOR", nullable = false)
 	private Treinador treinador;
 	
-	
-
 
 	public Pokemon(String raca, int nivel, Tipos tipo, Calendar captura) {
 		super();
@@ -59,12 +57,9 @@ public class Pokemon {
 		this.captura = captura;
 	}
 
-
-
 	public Pokemon() {
+		
 	}
-	
-
 	
 	public Tipos getTipo() {
 		return tipo;
@@ -104,6 +99,14 @@ public class Pokemon {
 
 	public void setTreinador(Treinador treinador) {
 		this.treinador = treinador;
+	}
+
+	public Calendar getCaptura() {
+		return captura;
+	}
+
+	public void setCaptura(Calendar captura) {
+		this.captura = captura;
 	} 
 	
 	
