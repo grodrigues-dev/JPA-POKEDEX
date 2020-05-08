@@ -1,5 +1,7 @@
 package br.com.fiap.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.com.fiap.dao.TreinadorDAO;
@@ -12,5 +14,14 @@ public class TreinadorDAOImpl extends GenericDAOImpl<Treinador, Integer> impleme
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public List<Treinador> lista(int xp) {
+		return em.createNamedQuery("Treinador.xp", Treinador.class)
+				.setParameter("xp", xp)
+				.getResultList();
+	}
+	
+	
+	
 
 }

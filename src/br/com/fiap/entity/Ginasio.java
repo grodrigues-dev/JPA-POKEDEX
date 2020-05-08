@@ -11,9 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+//@NamedQueries({
+//	@NamedQuery(name="Ginasio", query="")
+//})
 
 @Entity
 @Table(name = "ENTERPRISE_TB_GINASIO")

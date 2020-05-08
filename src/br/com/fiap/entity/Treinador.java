@@ -10,11 +10,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@NamedQueries({	
+	@NamedQuery(name="Treinador.xp",
+			query="select t from Treinador t where t.xp >=:xp"), 
+})
+
+
+			
 
 @Entity
 @Table(name="ENTERPRISE_TB_TREINADOR")

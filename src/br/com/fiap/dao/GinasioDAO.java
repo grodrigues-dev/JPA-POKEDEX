@@ -8,5 +8,10 @@ import br.com.fiap.entity.Pokemon;
 public interface GinasioDAO extends GenericDAO<Ginasio, Integer> {
 	
 	public List<Pokemon> listaPokemons(int cod);
-
+	
+	public List<Ginasio> lista();
+	
+	long contar(int cod);
+	
+	long dificuldade(int cod);
 }

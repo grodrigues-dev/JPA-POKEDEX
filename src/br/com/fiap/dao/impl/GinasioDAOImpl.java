@@ -24,4 +24,32 @@ public class GinasioDAOImpl extends GenericDAOImpl<Ginasio, Integer> implements 
 		return query.getResultList();
 	}
 
+	@Override
+	public long contar(int cod) {
+		return em.createQuery(
+				"select count(p) from Pokemon p where p.treinador.ginasio.codigo = :cod ",
+				Long.class)
+				.setParameter("cod", cod)
+				.getSingleResult();
+				
+	}
+
+	@Override
+	public long dificuldade(int cod) {
+		return em.createQuery("select sum(p.nivel) from Pokemon p where p.treinador.ginasio.codigo = :cod", 
+				Long.class)
+				.setParameter("cod", cod)
+				.getSingleResult();
+	}
+
+	@Override
+	public List<Ginasio> lista() {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery(
+				"SELECT * FROM ENTERPRISE_TB_GINASIO", 
+				Ginasio.class)
+					.getResultList();
+				
+	}
+
 }
